@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/login_view.dart';
+import 'screens/register_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Jost',
       ),
       home: const LoginView(),
+      
     );
   }
 }
