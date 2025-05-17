@@ -5,17 +5,23 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+// Set custom build directory for root project
+val newBuildDir = rootProject.layout.buildDirectory.dir("../../build").get()
+rootProject.layout.buildDirectory.set(newBuildDir)
 
+// Set custom build directory for all subprojects
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    val newSubprojectBuildDir = newBuildDir.dir(project.name)
+    layout.buildDirectory.set(newSubprojectBuildDir)
+
+    // Ensure app project is evaluated before others
+    evaluationDependsOn(":app")
 }
 
+// Register clean task
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+// Set NDK version
+extra["ndkVersion"] = "27.0.12077973"
