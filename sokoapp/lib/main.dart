@@ -12,8 +12,37 @@ class SmartSokoApp extends StatelessWidget {
     return MaterialApp(
       title: 'SmartSoko Fashion',
       theme: ThemeData(fontFamily: 'Inter'),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginView(),
+        '/register': (context) => const RegisterView(),
+      },
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Login')),
+      body: const Center(child: Text('Login Screen')),
+    );
+  }
+}
+
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Register')),
+      body: const Center(child: Text('Register Screen')),
     );
   }
 }
@@ -44,8 +73,11 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.person, color: Colors.black)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_bag, color: Colors.black)),
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.person, color: Colors.black)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.shopping_bag, color: Colors.black)),
         ],
       ),
       body: Stack(
@@ -82,8 +114,10 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
                   ),
                   child: const Text(
                     'LEARN MORE ABOUT US',
