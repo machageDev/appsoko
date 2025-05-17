@@ -5,9 +5,10 @@ import 'dart:convert';
 class ProductDetailView extends StatefulWidget {
   final String productId;
 
-  ProductDetailView({required this.productId});
+  const ProductDetailView({super.key, required this.productId});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProductDetailViewState createState() => _ProductDetailViewState();
 }
 
@@ -19,42 +20,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   String selectedColor = 'Black';
   String selectedSize = 'S/S';
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchProductData();
-  }
-
-  Future<void> _fetchProductData() async {
-    try {
-      // Fetch main product details
-      final productResponse = await http.get(
-        Uri.parse('https://your-api.com/products/${widget.productId}'),
-      );
-
-      // Fetch related products
-      final relatedResponse = await http.get(
-        Uri.parse('https://your-api.com/products/related/${widget.productId}'),
-      );
-
-      if (productResponse.statusCode == 200 && relatedResponse.statusCode == 200) {
-        setState(() {
-          product = json.decode(productResponse.body);
-          relatedProducts = json.decode(relatedResponse.body);
-          isLoading = false;
-        });
-      } else {
-        throw Exception('Failed to load product data');
-      }
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error loading product: $e')),
-      );
-    }
-  }
+ 
+ 
 
   void _showAddToCartModal() {
     showModalBottomSheet(
