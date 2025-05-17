@@ -1,29 +1,11 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import ' product cart_view.dart'; 
+import 'dart:convert';
 
-class CartService {
-  static const String baseUrl = 'http://127.0.0.1:8000'; 
-  
+class ApiService {
+  static const String baseUrl = 'https://your-api.com';
 
-  static Future<List<CartItem>> fetchCartItems() async {
-    final response = await http.get(Uri.parse('$baseUrl/api/cart/'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      return data.map((json) => CartItem.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to load cart items');
-    }
-  }
-}
-
-
-
-
-  Future<Map<String, dynamic>> fetchProductById(String productId) async {
+  static Future<Map<String, dynamic>> fetchProduct(String productId) async {
     final response = await http.get(Uri.parse('$baseUrl/products/$productId'));
-
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -32,8 +14,7 @@ class CartService {
   }
 
   static Future<List<dynamic>> fetchRelatedProducts(String productId) async {
-    final response = await http.get(Uri.parse('$baseUrl/products/related/$productId'));
-
+    final response = await http.get(Uri.parse('$baseUrl/products/$productId/related'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -41,7 +22,7 @@ class CartService {
     }
   }
 
-  static Future<bool> addToCart({
+  static Future<void> addToCart({
     required String productId,
     required int quantity,
     required String color,
@@ -58,6 +39,8 @@ class CartService {
       }),
     );
 
-    return response.statusCode == 200;
+    if (response.statusCode != 200) {
+      throw Exception('Failed to add to cart');
+    }
   }
 }
