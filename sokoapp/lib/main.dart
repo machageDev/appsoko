@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screens/login_view.dart';
+import 'screens/register_view.dart';
 
 void main() {
   runApp(const SmartSokoApp());
@@ -23,29 +25,7 @@ class SmartSokoApp extends StatelessWidget {
   }
 }
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: const Center(child: Text('Login Screen')),
-    );
-  }
-}
-
-class RegisterView extends StatelessWidget {
-  const RegisterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
-      body: const Center(child: Text('Register Screen')),
-    );
-  }
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
