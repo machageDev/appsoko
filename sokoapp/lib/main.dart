@@ -14,7 +14,7 @@ class SmartSokoApp extends StatelessWidget {
     return MaterialApp(
       title: 'SmartSoko Fashion',
       theme: ThemeData(fontFamily: 'Inter'),
-      initialRoute: '/login',
+      initialRoute: '/home',
       routes: {
         '/login': (context) => const LoginView(),
         '/register': (context) => const RegisterView(),
