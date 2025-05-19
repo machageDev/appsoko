@@ -25,56 +25,29 @@ class SmartSokoApp extends StatelessWidget {
   }
 }
 
-
-
+// Add this HomeScreen widget that was missing
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: 'SmartSoko',
-                style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
-              ),
-              TextSpan(
-                text: ' Fashion',
-                style: TextStyle(color: Colors.black),
-              ),
-            ],
-          ),
-          style: TextStyle(fontSize: 20),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.person, color: Colors.black)),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_bag, color: Colors.black)),
-        ],
-      ),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/banner.png',
-              fit: BoxFit.cover,
+          // Background image or color
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.blue, Colors.purple],
+              ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(color: Colors.black.withOpacity(0.4)),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
+          // Content
+          Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Cool Fashion',
@@ -91,7 +64,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Add navigation or other action here
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     shape: RoundedRectangleBorder(

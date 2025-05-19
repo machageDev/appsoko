@@ -58,7 +58,7 @@ class _ContactViewState extends State<ContactView> {
                   children: [
                     Text(
                       "Let's Get In Touch!",
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Divider(
                       thickness: 2,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,14 +52,14 @@ class HomeView extends StatelessWidget {
                         // Navigate to shop page
                         Navigator.pushNamed(context, '/shop');
                       },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        child: Text('Shop Now'),
-                      ),
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        child: Text('Shop Now'),
                       ),
                     ),
                   ],

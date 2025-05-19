@@ -36,6 +36,8 @@ class CartItem {
 
 // Cart View Widget
 class CartView extends StatefulWidget {
+  const CartView({super.key});
+
   @override
   _CartViewState createState() => _CartViewState();
 }
@@ -60,11 +62,13 @@ class _CartViewState extends State<CartView> {
       body: FutureBuilder<List<CartItem>>(
         future: _cartItems,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
+          }
 
-          if (snapshot.hasError)
+          if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
+          }
 
           final items = snapshot.data!;
           final total = _calculateTotal(items);

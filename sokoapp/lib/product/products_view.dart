@@ -23,6 +23,8 @@ class Product {
 }
 
 class ProductView extends StatefulWidget {
+  const ProductView({super.key});
+
   @override
   _ProductViewState createState() => _ProductViewState();
 }
@@ -54,9 +56,9 @@ class _ProductViewState extends State<ProductView> {
       body: FutureBuilder<List<Product>>(
         future: products,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          else if (snapshot.hasError)
+          } else if (snapshot.hasError)
             return Center(child: Text('Error: ${snapshot.error}'));
           else if (!snapshot.hasData || snapshot.data!.isEmpty)
             return Center(child: Text('No products found.'));
