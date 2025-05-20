@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:sokoapp/product/cart_view.dart';
+
 class ApiService {
   static const String baseUrl = 'https://your-api.com';
 
@@ -128,5 +130,42 @@ class Product {
 
     if (response.statusCode != 201) {
       throw Exception('Failed to add to cart');
+    }
+  }
+ Future<List<CartItem>> fetchCartItems() async {
+    final response = await http.get(Uri.parse('$baseUrl/cart'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((item) => CartItem.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load cart items');
+    }
+  }
+
+  // Remove item from cart
+ Future<void> removeFromCart(int itemId) async {
+    final response = await http.delete(Uri.parse('$baseUrl/cart/$itemId'));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to remove item from cart');
+    }
+  }
+
+  // Update cart item quantity
+ Future<void> updateQuantity(int itemId, int newQuantity) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/cart/$itemId'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({'quantity': newQuantity}),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update item quantity');
+    }
+  }
+
+  // Checkout cart
+   Future<void> checkout() async {
+    final response = await http.post(Uri.parse('$baseUrl/cart/checkout'));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to checkout');
     }
   }
