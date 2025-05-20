@@ -4,7 +4,9 @@ import 'screens/register_view.dart';
 import 'home/about_view.dart';
 import 'home/home_view.dart';
 import 'home/contact_view.dart';
-
+import 'product/cart_view.dart';
+import 'product/products_view.dart';
+import 'product/product_detail_view.dart';
 void main() {
   runApp(const SmartSokoApp());
 }
@@ -24,6 +26,10 @@ class SmartSokoApp extends StatelessWidget {
         '/about':(context) => const AboutView(),
         '/contact':(context) => const ContactView(),
         '/home': (context) => const HomeView(),
+        '/cart': (context) => const CartView(),
+        '/product': (context) => const ProductView(),
+        '/productDetail': (context) => const ProductDetailView(productId: '',),
+
       },
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
