@@ -37,7 +37,7 @@ class SmartSokoApp extends StatelessWidget {
   }
 }
 
-// Add this HomeScreen widget that was missing
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
