@@ -88,3 +88,45 @@ class Product {
     }
   }
 
+
+ Future<Map<String, dynamic>> fetchProduct(String productId) async {
+    final response = await http.get(Uri.parse('$baseUrl/products/$productId'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load product');
+    }
+  }
+
+  // Fetch related products
+ Future<List<dynamic>> fetchRelatedProducts(String productId) async {
+    final response = await http.get(Uri.parse('$baseUrl/products/$productId/related'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load related products');
+    }
+  }
+
+  // Add product to cart
+ Future<void> addToCart({
+    required String productId,
+    required int quantity,
+    required String color,
+    required String size,
+  }) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/cart'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'product_id': productId,
+        'quantity': quantity,
+        'color': color,
+        'size': size,
+      }),
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception('Failed to add to cart');
+    }
+  }

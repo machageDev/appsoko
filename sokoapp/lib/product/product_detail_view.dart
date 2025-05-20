@@ -1,4 +1,3 @@
-// product_detail_view.dart
 import 'package:flutter/material.dart';
 import 'package:sokoapp/API/api_service.dart';
 
@@ -49,7 +48,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       );
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Added to cart successfully!')),
+        const SnackBar(content: Text('Added to cart successfully!')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -61,7 +60,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
     }
@@ -71,7 +70,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
       body: Column(
         children: [
           Image.network(product['image'], height: 200),
-          Text(product['name'], style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(product['name'], style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           Text('\$${product['price']}'),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -84,10 +83,10 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       .toList(),
                   onChanged: (val) => setState(() => quantity = val ?? 1),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: _addToCart,
-                  child: Text('Add to Cart'),
+                  child: const Text('Add to Cart'),
                 )
               ],
             ),
