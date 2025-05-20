@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/login_view.dart';
 import 'screens/register_view.dart';
+import 'home/about_view.dart';
+import 'home/home_view.dart';
+import 'home/contact_view.dart';
 
 void main() {
   runApp(const SmartSokoApp());
@@ -18,6 +21,9 @@ class SmartSokoApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginView(),
         '/register': (context) => const RegisterView(),
+        '/about':(context) => const AboutView(),
+        '/contact':(context) => const ContactView(),
+        '/home': (context) => const HomeView(),
       },
       home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
