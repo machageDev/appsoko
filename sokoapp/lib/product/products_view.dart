@@ -1,4 +1,4 @@
-// lib/screens/product_view.dart
+
 import 'package:flutter/material.dart';
 import 'package:sokoapp/API/api_service.dart';
 import 'package:sokoapp/API/api_service.dart' as ApiService;
