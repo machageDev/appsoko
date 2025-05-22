@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'screens/login_view.dart';
 import 'screens/register_view.dart';
@@ -68,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.blue, Colors.purple],
+                colors: [Colors.blue, Colors.purple],                
               ),
             ),
           ),
