@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: MediaQuery.of(context).size.height * 0.7,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/medium-shot-business-women-high-five.jpg'),
+                  image: AssetImage('assets/images/slideshow/medium-shot-business-women-high-five.jpeg'),
                   fit: BoxFit.cover,
                 ),
               ),
