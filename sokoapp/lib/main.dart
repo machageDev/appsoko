@@ -55,17 +55,64 @@ class _HomeScreenState extends State<HomeScreen> {
     // Example call to API
     
   }
-   Widget build(BuildContext context) {
+ 
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'SmartSoko',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              switch (value) {
+                case 'home':
+                  Navigator.pushNamed(context, '/home');
+                  break;
+                case 'about':
+                  Navigator.pushNamed(context, '/about');
+                  break;
+                case 'contact':
+                  Navigator.pushNamed(context, '/contact');
+                  break;
+                case 'faqs':
+                  Navigator.pushNamed(context, '/faqs');
+                  break;
+              }
+            },
+            icon: const Icon(Icons.menu, color: Colors.black),
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem(value: 'home', child: Text('Home')),
+              const PopupMenuItem(value: 'about', child: Text('About')),
+              const PopupMenuItem(value: 'contact', child: Text('Contact')),
+              const PopupMenuItem(value: 'faqs', child: Text('FAQs')),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.login, color: Colors.black),
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Hero Header Section
             Container(
               height: MediaQuery.of(context).size.height * 0.7,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/medium-shot-business-women-high-five.jpg'), 
+                  image: AssetImage('assets/images/medium-shot-business-women-high-five.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -80,16 +127,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 24,
                       ),
                     ),
-                    Text(
-                      'Smartsoko Fashon',
+                    const Text(
+                      'SmartSoko Fashion',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
+                    const SizedBox(height: 16),
+                    const Text(
                       'Your one-stop shop for modern and stylish fashion items',
                       style: TextStyle(
                         color: Colors.white,
@@ -97,18 +144,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
-                        // Navigate to produc page
-                        Navigator.pushNamed(context, '/products');
+                        Navigator.pushNamed(context, '/product');
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         child: Text('Shop Now'),
                       ),
@@ -117,25 +163,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
-            // Featured Products Section
             Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'Featured Products',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 40),
-                  
-                  // Featured Products Grid
+                  const SizedBox(height: 40),
                   GridView.count(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 1,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 24,
@@ -146,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Stylish Jacket',
                         description: 'Warm and trendy',
                         price: '\$49',
-                        onTap: () => Navigator.pushNamed(context, '/product/1'),
+                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '1'),
                       ),
                       _buildProductItem(
                         context,
@@ -154,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Elegant Dress',
                         description: 'Perfect for any occasion',
                         price: '\$69',
-                        onTap: () => Navigator.pushNamed(context, '/product/2'),
+                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '2'),
                       ),
                       _buildProductItem(
                         context,
@@ -162,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Classic Shoes',
                         description: 'Comfort meets style',
                         price: '\$59',
-                        onTap: () => Navigator.pushNamed(context, '/product/3'),
+                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '3'),
                       ),
                     ],
                   ),
@@ -195,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
                 child: Image.asset(
                   imagePath,
                   fit: BoxFit.cover,
@@ -203,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
                   Expanded(
@@ -212,14 +254,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                         ),
                         Text(
                           description,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
@@ -229,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Text(
                     price,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
                     ),
