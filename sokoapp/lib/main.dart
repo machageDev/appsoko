@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: MediaQuery.of(context).size.height * 0.7,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/slideshow/medium-shot-business-women-high-five.jpeg'),
+                  image: AssetImage("assets/images/slideshow/medium-shot-business-women-high-five.jpeg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/background.jpg',
+                        imagePath: "assets/images/product/background.jpg",
                         title: 'Stylish Jacket',
                         description: 'Warm and trendy',
                         price: 'Ksh 1000',
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/sample2.webp',
+                        imagePath: "assets/images/product/sample2.webp",
                         title: 'Elegant Dress',
                         description: 'Perfect for any occasion',
                         price: 'Ksh 1260',
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/sample3.jpg',
+                        imagePath: "assets/images/product/sample3.jpg",
                         title: 'Classic Shoes',
                         description: 'Comfort meets style',
                         price: 'Ksh 4559',
