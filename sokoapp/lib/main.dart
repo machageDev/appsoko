@@ -59,9 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image or gradient
+          
           Container(
             decoration: const BoxDecoration(
+              image: DecorationImage(
+              image: AssetImage('assets/images/medium-shot-business-women-high-five.jpg'),
+              fit: BoxFit.cover),
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
