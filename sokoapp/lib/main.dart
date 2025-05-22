@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'screens/login_view.dart';
 import 'screens/register_view.dart';
@@ -29,7 +27,7 @@ class SmartSokoApp extends StatelessWidget {
         '/register': (context) => const RegisterView(),
         '/about': (context) => const AboutView(),
         '/contact': (context) => const ContactView(),
-        '/home': (context) => const HomeScreen(), // Use corrected HomeScreen here
+        '/home': (context) => const HomeScreen(),
         '/cart': (context) => const CartView(),
         '/product': (context) => const ProductView(),
         '/productDetail': (context) => const ProductDetailView(productId: ''),
@@ -47,15 +45,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService apiService = ApiService();
-  late Future<String> futureData;
-
-  @override
-  void initState() {
-    super.initState();
-    // Example call to API
-    
-  }
- 
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         imagePath: 'assets/images/product/background.jpg',
                         title: 'Stylish Jacket',
                         description: 'Warm and trendy',
-                        price: '\ Ksh 1000',
+                        price: 'Ksh 1000',
                         onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '1'),
                       ),
                       _buildProductItem(
@@ -195,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         imagePath: 'assets/images/product/sample2.webp',
                         title: 'Elegant Dress',
                         description: 'Perfect for any occasion',
-                        price: '\ Ksh 1260',
+                        price: 'Ksh 1260',
                         onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '2'),
                       ),
                       _buildProductItem(
@@ -203,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         imagePath: 'assets/images/product/sample3.jpg',
                         title: 'Classic Shoes',
                         description: 'Comfort meets style',
-                        price: '\ Ksh 4559',
+                        price: 'Ksh 4559',
                         onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '3'),
                       ),
                     ],
