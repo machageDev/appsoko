@@ -203,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         imagePath: 'assets/images/product/sample3.jpg',
                         title: 'Classic Shoes',
                         description: 'Comfort meets style',
-                        price: '\ Ksh 1159',
+                        price: '\ Ksh 4559',
                         onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '3'),
                       ),
                     ],
