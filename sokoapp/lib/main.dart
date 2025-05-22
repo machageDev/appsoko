@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/products');
+                        Navigator.pushNamed(context, '/product');
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/background.jpeg',
+                        imagePath: 'assets/images/product/background.jpg',
                         title: 'Stylish Jacket',
                         description: 'Warm and trendy',
                         price: '\ Ksh 1000',
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/sample2.jpeg',
+                        imagePath: 'assets/images/product/sample2.webp',
                         title: 'Elegant Dress',
                         description: 'Perfect for any occasion',
                         price: '\ Ksh 1260',
@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       _buildProductItem(
                         context,
-                        imagePath: 'assets/images/product/sample3.jpeg',
+                        imagePath: 'assets/images/product/sample3.jpg',
                         title: 'Classic Shoes',
                         description: 'Comfort meets style',
                         price: '\ Ksh 1159',
