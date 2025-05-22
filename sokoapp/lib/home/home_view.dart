@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.7,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/header_background.jpg'), // Add your background image
+                  image: AssetImage('assets/images/medium-shot-business-women-high-five.jpg'), 
                   fit: BoxFit.cover,
                 ),
               ),
