@@ -115,117 +115,146 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 8),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.7,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: const AssetImage("assets/images/slideshow/medium-shot-business-women-high-five.jpeg"),
-                  fit: BoxFit.cover,
-                  onError: (exception, stackTrace) {
-                    debugPrint('Error loading image: $exception');
-                  },
-                ),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Welcome to',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 24,
-                      ),
-                    ),
-                    const Text(
-                      'SmartSoko Fashion',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Your one-stop shop for modern and stylish fashion items',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/product');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        child: Text('Shop Now'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Text(
-                    'Featured Products',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: const AssetImage(
+                            "assets/images/slideshow/medium-shot-business-women-high-five.jpeg"),
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {
+                          debugPrint('Error loading image: $exception');
+                        },
+                      ),
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Welcome to',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 24,
+                            ),
+                          ),
+                          const Text(
+                            'SmartSoko Fashion',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Your one-stop shop for modern and stylish fashion items',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 24),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/product');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                            ),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                              child: Text('Shop Now'),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 40),
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 1,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 24,
-                    children: [
-                      _buildProductItem(
-                        context,
-                        imagePath: "assets/images/product/background.jpg",
-                        title: 'Stylish Jacket',
-                        description: 'Warm and trendy',
-                        price: 'Ksh 1000',
-                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '1'),
-                      ),
-                      _buildProductItem(
-                        context,
-                        imagePath: "assets/images/product/sample2.webp",
-                        title: 'Elegant Dress',
-                        description: 'Perfect for any occasion',
-                        price: 'Ksh 1260',
-                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '2'),
-                      ),
-                      _buildProductItem(
-                        context,
-                        imagePath: "assets/images/product/sample3.jpg",
-                        title: 'Classic Shoes',
-                        description: 'Comfort meets style',
-                        price: 'Ksh 4559',
-                        onTap: () => Navigator.pushNamed(context, '/productDetail', arguments: '3'),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Featured Products',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount:
+                              MediaQuery.of(context).size.width > 600 ? 3 : 1,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 24,
+                          children: [
+                            _buildProductItem(
+                              context,
+                              imagePath: "assets/images/product/background.jpg",
+                              title: 'Stylish Jacket',
+                              description: 'Warm and trendy',
+                              price: 'Ksh 1000',
+                              onTap: () => Navigator.pushNamed(
+                                  context, '/productDetail',
+                                  arguments: '1'),
+                            ),
+                            _buildProductItem(
+                              context,
+                              imagePath: "assets/images/product/sample2.webp",
+                              title: 'Elegant Dress',
+                              description: 'Perfect for any occasion',
+                              price: 'Ksh 1260',
+                              onTap: () => Navigator.pushNamed(
+                                  context, '/productDetail',
+                                  arguments: '2'),
+                            ),
+                            _buildProductItem(
+                              context,
+                              imagePath: "assets/images/product/sample3.jpg",
+                              title: 'Classic Shoes',
+                              description: 'Comfort meets style',
+                              price: 'Ksh 4559',
+                              onTap: () => Navigator.pushNamed(
+                                  context, '/productDetail',
+                                  arguments: '3'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          // Copyright Footer
+          Container(
+            padding: const EdgeInsets.all(12),
+            color: Colors.grey[100],
+            child: Center(
+              child: Text(
+                '© SmartSoko 2025. All rights reserved.',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -250,7 +279,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8)),
                 child: _loadAssetImage(imagePath),
               ),
             ),
