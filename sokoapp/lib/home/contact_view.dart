@@ -4,7 +4,7 @@ class ContactView extends StatefulWidget {
   const ContactView({super.key});
 
   @override
-  _ContactViewState createState() => _ContactViewState();
+  State<ContactView> createState() => _ContactViewState();
 }
 
 class _ContactViewState extends State<ContactView> {
@@ -13,8 +13,6 @@ class _ContactViewState extends State<ContactView> {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _messageController = TextEditingController();
-
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -27,168 +25,112 @@ class _ContactViewState extends State<ContactView> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      // Simulate form submission
-      Future.delayed(Duration(seconds: 2), () {
-        setState(() {
-          _isLoading = false;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Message sent successfully!')),
-        );
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Your message has been submitted!')),
+      );
+      _formKey.currentState!.reset();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: [
-              // Header Section
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 32),
-                child: Column(
-                  children: [
-                    Text(
-                      "Let's Get In Touch!",
-                      style: Theme.of(context).textTheme.headlineMedium,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Contact Us'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const Text(
+              "Let's Get In Touch!",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const Divider(height: 20, thickness: 2),
+            const SizedBox(height: 10),
+            const Text(
+              'Ready to start your next project with us? Send us a message and we will get back to you as soon as possible!',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 30),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Full Name',
+                      border: OutlineInputBorder(),
                     ),
-                    Divider(
-                      thickness: 2,
-                      indent: 100,
-                      endIndent: 100,
-                      color: Theme.of(context).dividerColor,
+                    validator: (value) =>
+                        value!.isEmpty ? 'Please enter your name' : null,
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'Email Address',
+                      border: OutlineInputBorder(),
                     ),
-                    SizedBox(height: 16),
-                    Text(
-                      "Ready to start your next project with us? Send us a message and we will get back to you as soon as possible!",
-                      style: TextStyle(color: Colors.grey),
-                      textAlign: TextAlign.center,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) =>
+                        value!.isEmpty ? 'Please enter your email' : null,
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _phoneController,
+                    decoration: const InputDecoration(
+                      labelText: 'Phone Number',
+                      border: OutlineInputBorder(),
                     ),
-                  ],
+                    keyboardType: TextInputType.phone,
+                    validator: (value) =>
+                        value!.isEmpty ? 'Please enter your phone number' : null,
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: _messageController,
+                    maxLines: 5,
+                    decoration: const InputDecoration(
+                      labelText: 'Message',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) =>
+                        value!.isEmpty ? 'Please enter your message' : null,
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: _submitForm,
+                    child: const Text('Submit'),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Phone: +254 742461239',
+              style: TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+            const SizedBox(height: 40),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              alignment: Alignment.center,
+              child: Text(
+                '© SmartSoko 2025. All rights reserved.',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[600],
                 ),
               ),
-
-              // Contact Form
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    // Name Input
-                    TextFormField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        labelText: 'Full Name',
-                        border: OutlineInputBorder(),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your name';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16),
-
-                    // Email Input
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email Address',
-                        border: OutlineInputBorder(),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        if (!value.contains('@')) {
-                          return 'Please enter a valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16),
-
-                    // Phone Input
-                    TextFormField(
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        border: OutlineInputBorder(),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your phone number';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 16),
-
-                    // Message Input
-                    TextFormField(
-                      controller: _messageController,
-                      maxLines: 5,
-                      decoration: InputDecoration(
-                        labelText: 'Message',
-                        border: OutlineInputBorder(),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your message';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 24),
-
-                    // Submit Button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: _submitForm,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16),
-                          child: Text('Submit'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Contact Info
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 32),
-                child: Column(
-                  children: [
-                    Icon(Icons.phone, size: 32, color: Colors.grey),
-                    SizedBox(height: 8),
-                    Text('+1 (555) 123-4567'),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-
-        // Loading Indicator
-        if (_isLoading)
-          Center(
-            child: CircularProgressIndicator(),
-          ),
-      ],
+      ),
     );
   }
 }
