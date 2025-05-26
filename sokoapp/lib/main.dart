@@ -7,6 +7,7 @@ import 'product/cart_view.dart';
 import 'product/products_view.dart';
 import 'product/product_detail_view.dart';
 import '/Api/api_service.dart';
+import 'home/faqs_view.dart';
 
 void main() {
   runApp(const SmartSokoApp());
@@ -31,6 +32,7 @@ class SmartSokoApp extends StatelessWidget {
         '/cart': (context) => const CartView(),
         '/product': (context) => const ProductView(),
         '/productDetail': (context) => const ProductDetailView(productId: ''),
+        '/faqs': (context) => const FaqsView(),
       },
     );
   }
