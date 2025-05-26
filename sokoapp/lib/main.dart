@@ -46,6 +46,27 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService apiService = ApiService();
 
+  Widget _buildErrorWidget() {
+    return Container(
+      color: Colors.grey[200],
+      child: const Center(
+        child: Icon(Icons.broken_image, color: Colors.red),
+      ),
+    );
+  }
+
+  Widget _loadAssetImage(String path) {
+    try {
+      return Image.asset(
+        path,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => _buildErrorWidget(),
+      );
+    } catch (e) {
+      return _buildErrorWidget();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,9 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.7,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/slideshow/medium-shot-business-women-high-five.jpeg"),                 
+                  image: const AssetImage("assets/images/slideshow/medium-shot-business-women-high-five.jpeg"),
+                  fit: BoxFit.cover,
+                  onError: (exception, stackTrace) {
+                    debugPrint('Error loading image: $exception');
+                  },
                 ),
               ),
               child: Center(
@@ -226,10 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                ),
+                child: _loadAssetImage(imagePath),
               ),
             ),
             Padding(
