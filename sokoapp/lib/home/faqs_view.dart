@@ -60,6 +60,20 @@ class FaqsView extends StatelessWidget {
                 question: faq['question']!,
                 answer: faq['answer']!,
               )),
+          const SizedBox(height: 32),
+          Container(
+            padding: const EdgeInsets.all(12),
+            color: Colors.grey[100],
+            child: Center(
+              child: Text(
+                '© SmartSoko 2025. All rights reserved.',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -84,8 +98,10 @@ class _FaqTileState extends State<FaqTile> {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: ExpansionTile(
-        title: Text(widget.question,
-            style: const TextStyle(fontWeight: FontWeight.w600)),
+        title: Text(
+          widget.question,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
