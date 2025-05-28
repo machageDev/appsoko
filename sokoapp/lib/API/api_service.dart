@@ -184,3 +184,16 @@ class Product {
       throw Exception('Failed to login');
       }
   }
+  Future<Map<String,dynamic>>register(
+    String name, String email, String password) async {
+      final response = await http.post(Uri.parse('$baseUrl/register'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({'name': name, 'email': email, 'password': password}),
+      );
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+        } else {
+          throw Exception('Failed to register');
+          }
+    }
+  
