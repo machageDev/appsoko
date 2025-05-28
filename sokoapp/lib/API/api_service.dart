@@ -164,7 +164,7 @@ class Product {
     }
   }
 
-  // Checkout cart
+  
    Future<void> checkout() async {
     final response = await http.post(Uri.parse('$baseUrl/cart/checkout'));
     if (response.statusCode != 200) {

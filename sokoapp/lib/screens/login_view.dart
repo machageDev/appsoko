@@ -32,7 +32,6 @@ class _LoginViewState extends State<LoginView> {
         _passwordController.text.trim(),
       );
 
-      
       if (!mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
       
@@ -49,6 +48,10 @@ class _LoginViewState extends State<LoginView> {
         setState(() => _isLoading = false);
       }
     }
+  }
+
+  void _navigateToRegister() {
+    Navigator.pushNamed(context, '/register');
   }
 
   @override
@@ -165,6 +168,32 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                       ),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account? ",
+                          style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: _navigateToRegister,
+                          child: Text(
+                            'Create account',
+                            style: GoogleFonts.jost(
+                              textStyle: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
