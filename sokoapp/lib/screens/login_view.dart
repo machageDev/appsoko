@@ -1,5 +1,8 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sokoapp/API/api_service.dart' as ApiService;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -18,6 +21,32 @@ class _LoginViewState extends State<LoginView> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+  future<void>_login()async{
+    if (_formKey.currentState!.validate()) return;
+    setState(() => _isloading = true);
+    try {
+      final response = awaits; ApiService.login(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+      );
+      if(!mounted) return;
+      Navigator.pushReplacementNamed(context.'/home');
+      } catch (e) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+        ),
+        );
+        }finally{
+          if (mounted){
+            setState(() => _isLoading = false);
+          }
+        }
+    return null;
+        
   }
 
   @override
@@ -130,3 +159,4 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+
