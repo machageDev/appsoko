@@ -196,4 +196,38 @@ class Product {
           throw Exception('Failed to register');
           }
     }
-  
+
+
+  Future<Map<String, dynamic>> forgotPassword(String email, dynamic baseUrl) async {
+    final url = Uri.parse('$baseUrl/forgot_password');
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'email': email}),
+      );
+
+      if (response.statusCode == 200) {
+        return {
+          'status': true,
+          'message': 'Check your email for reset link.',
+        };
+      } else {
+        // If your API returns an error message in the body
+        final data = json.decode(response.body);
+        return {
+          'status': false,
+          'message': data['error'] ?? 'Failed to send reset email.',
+        };
+      }
+    } catch (e) {
+      return {
+        'status': false,
+        'message': 'Something went wrong. Please try again later.',
+      };
+    }
+
+} 
