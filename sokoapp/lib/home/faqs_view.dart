@@ -102,18 +102,18 @@ class _FaqTileState extends State<FaqTile> {
           widget.question,
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(widget.answer),
-          ),
-        ],
         initiallyExpanded: _isExpanded,
         onExpansionChanged: (val) {
           setState(() {
             _isExpanded = val;
           });
         },
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(widget.answer),
+          ),
+        ],
       ),
     );
   }

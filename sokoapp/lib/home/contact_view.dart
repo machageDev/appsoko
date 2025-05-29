@@ -103,10 +103,10 @@ class _ContactViewState extends State<ContactView> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _submitForm,
-                    child: const Text('Submit'),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                     ),
+                    child: const Text('Submit'),
                   ),
                 ],
               ),
